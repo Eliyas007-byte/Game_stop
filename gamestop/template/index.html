@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  {% load bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+  <title>Document</title>
+ </head>
+ <body style="background-image: url('static/image/img.jpg');">
+
+    <h1 class="style1" align="center">Index</h1>
+
+
+    {% if request.user.is_authenticated %}
+    
+
+    <h3  align="center"><a href="/logout">Logout</a></h3>
+
+    {% if request.user.is_superuser %}
+
+        admin
+
+    {% elif request.user.is_staff %}
+
+
+        <h3 align="center"><a href="/create_product">Create Product </a></h3>
+        <h3 align="center"><a href="/read_product">Read Product</a></h3>
+        <h3 align="center"><a href="/read_cart">Show Cart</a></h3>
+        <h3 align="center"><a href="/read_orders">Previous Orders</a></h3>
+
+    {% else %}
+
+        <h3 align="center"><a href="/read_product">Read product</a></h3>
+        <h3 align="center"><a href="/read_cart">Show Cart</a></h3>
+        <h3 align="center"><a href="/read_orders">Previous Orders</a></h3>
+
+    {% endif %}
+
+    
+
+  {% else %}
+
+    <h3 align="center"><a href="/login">Login</a></h3>
+    <h3 align="center"><a href="/register">Register</a></h3>
+
+  {% endif %}
+ </body>
+ </html>
